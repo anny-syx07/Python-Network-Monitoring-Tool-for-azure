@@ -3,56 +3,55 @@ name: Deploy Network Monitor to Azure ACI
 on:
   push:
     branches:
-      - main  # Mỗi khi anh đẩy (push) code mới vào nhánh main, lệnh tự động sẽ chạy
+      - main
 
-# Khai báo các biến môi trường thay vì code "cứng" (Hardcode)
 env:
-  RESOURCE_GROUP: "network-monitor-rg"
-  ACR_NAME: "pythontoolregistry999"      # Phải trùng tên lúc anh tạo Azure Container Registry
+  RESOURCE_GROUP: "pynetmon-rg"
+  IMAGE_NAME: "deflauthuman/network-monitor:latest"
   CONTAINER_NAME: "python-monitor-container"
-  IMAGE_NAME: "network-monitor:latest"
+  LOCATION: "malaysiawest"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    
-    # 1. Tải toàn bộ Source code của dự án Network Monitor
     - name: Checkout Source Code
       uses: actions/checkout@v3
 
-    # 2. Đăng nhập vào cửa chính của Azure (Dùng Service Principal / Chìa khóa riêng)
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        platforms: linux/amd64
+        push: true
+        tags: ${{ env.IMAGE_NAME }}
+
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # 3. Đăng nhập vào Kho Image (Azure Container Registry)
-    - name: Login to ACR
-      run: |
-        az acr login --name ${{ env.ACR_NAME }}
-
-    # 4. Trộn Code ra thành khối (Docker Build) và Ném lên Kho (Push)
-    - name: Build and Push Docker image
-      run: |
-        # Đóng gói image
-        docker build -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }} .
-        # Cất vào kho
-        docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}
-
-    # 5. Phóng máy chủ ảo (Deploy) lên Azure Container Instances (ACI)
     - name: Deploy to Azure Container Instances
       run: |
         az container create \
           --resource-group ${{ env.RESOURCE_GROUP }} \
           --name ${{ env.CONTAINER_NAME }} \
-          --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }} \
-          --assign-identity \
+          --image ${{ env.IMAGE_NAME }} \
+          --cpu 1 \
+          --memory 1 \
+          --location ${{ env.LOCATION }} \
           --os-type Linux \
-          --azure-file-volume-account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+          --azure-file-volume-account-name pynetmonstorage999 \
           --azure-file-volume-account-key ${{ secrets.AZURE_STORAGE_KEY }} \
           --azure-file-volume-share-name csvreports \
           --azure-file-volume-mount-path /app/reports \
+          --environment-variables PYTHONUNBUFFERED=1 \
           --restart-policy Always
 
     # --restart-policy Always: Để Cloud tự động phục hồi nếu script Network bị lỗi nhỏ rồi văng
