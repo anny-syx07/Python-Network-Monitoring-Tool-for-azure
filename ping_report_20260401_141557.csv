@@ -1,0 +1,26 @@
+timestamp,host,status,latency_ms,error
+2026-04-01 14:10:57,8.8.4.4,DOWN,,Host không phản hồi
+2026-04-01 14:10:57,1.1.1.1,DOWN,,Host không phản hồi
+2026-04-01 14:10:57,8.8.8.8,DOWN,,Host không phản hồi
+2026-04-01 14:10:57,google.com,DOWN,,Host không phản hồi
+2026-04-01 14:10:57,youtube.com,DOWN,,Host không phản hồi
+2026-04-01 14:12:00,1.1.1.1,DOWN,,Host không phản hồi
+2026-04-01 14:12:00,google.com,DOWN,,Host không phản hồi
+2026-04-01 14:12:00,youtube.com,DOWN,,Host không phản hồi
+2026-04-01 14:12:03,8.8.8.8,DOWN,,Host không phản hồi
+2026-04-01 14:12:03,8.8.4.4,DOWN,,Host không phản hồi
+2026-04-01 14:13:03,1.1.1.1,DOWN,,Host không phản hồi
+2026-04-01 14:13:03,google.com,DOWN,,Host không phản hồi
+2026-04-01 14:13:03,youtube.com,DOWN,,Host không phản hồi
+2026-04-01 14:13:09,8.8.4.4,DOWN,,Host không phản hồi
+2026-04-01 14:13:09,8.8.8.8,DOWN,,Host không phản hồi
+2026-04-01 14:14:06,1.1.1.1,DOWN,,Host không phản hồi
+2026-04-01 14:14:06,google.com,DOWN,,Host không phản hồi
+2026-04-01 14:14:06,youtube.com,DOWN,,Host không phản hồi
+2026-04-01 14:14:15,8.8.4.4,DOWN,,Host không phản hồi
+2026-04-01 14:14:15,8.8.8.8,DOWN,,Host không phản hồi
+2026-04-01 14:15:09,1.1.1.1,DOWN,,Host không phản hồi
+2026-04-01 14:15:09,google.com,DOWN,,Host không phản hồi
+2026-04-01 14:15:09,youtube.com,DOWN,,Host không phản hồi
+2026-04-01 14:15:21,8.8.4.4,DOWN,,Host không phản hồi
+2026-04-01 14:15:21,8.8.8.8,DOWN,,Host không phản hồi
