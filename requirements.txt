@@ -1,0 +1,3 @@
+# (Empty) Tool của chúng ta dùng thuần thư viện chuẩn của Python (socket, threading, logging, argparse, ...)
+# nên không yêu cầu package ngoài.
+# Mình vẫn tạo file này để sau này nắn nót thêm package phụ (như thư viện Azure, Slack Bot) thì sẽ dễ dàng điền vào.
