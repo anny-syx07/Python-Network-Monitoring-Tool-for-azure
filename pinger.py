@@ -26,9 +26,13 @@ def ping_host(host: str, timeout: int = 2, count: int = 1) -> dict:
     # Xác định tham số lệnh ping theo hệ điều hành
     system = platform.system().lower()
     if system == "windows":
+        # Windows: -w tính bằng millisecond
         cmd = ["ping", "-n", str(count), "-w", str(timeout * 1000), host]
+    elif system == "darwin":
+        # macOS: -W tính bằng millisecond (khác Linux!)
+        cmd = ["ping", "-c", str(count), "-W", str(timeout * 1000), host]
     else:
-        # Linux / macOS
+        # Linux: -W tính bằng giây
         cmd = ["ping", "-c", str(count), "-W", str(timeout), host]
 
     try:
