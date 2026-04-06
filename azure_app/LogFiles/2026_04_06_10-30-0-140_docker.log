@@ -1,0 +1,203 @@
+2026-04-06T01:14:13.9942519Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-06T01:14:14.7453304Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-06T01:14:14.7458574Z Container start method called.
+2026-04-06T01:14:14.7497162Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:14:14.7499276Z Establishing network.
+2026-04-06T01:14:14.7500930Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-06T01:14:15.0357746Z Container is starting.
+2026-04-06T01:14:15.0358976Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:14:15.0368771Z Establishing user namespace if not established already.
+2026-04-06T01:14:15.0371280Z Establishing network if not established already.
+2026-04-06T01:14:15.0372901Z Mounting volumes.
+2026-04-06T01:14:15.0389082Z Nested mountpoint 
+2026-04-06T01:14:15.0762567Z Nested mountpoint volatile/logs
+2026-04-06T01:14:15.0808092Z Nested mountpoint 
+2026-04-06T01:14:15.1009304Z Nested mountpoint 
+2026-04-06T01:14:15.1076245Z Nested mountpoint 
+2026-04-06T01:14:15.2101203Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for network-monitor-pro-anna. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-06T01:14:15.2102751Z Creating container.
+2026-04-06T01:14:15.2105131Z Creating pipes for streaming container io.
+2026-04-06T01:14:15.2106522Z Creating stdout named pipe at /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stdout_90d296da1fe841fda3bbbfdce27372c6.
+2026-04-06T01:14:15.2230641Z Successfully created stdout named pipe at: /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stdout_90d296da1fe841fda3bbbfdce27372c6.
+2026-04-06T01:14:15.2233317Z Opening named pipe /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stdout_90d296da1fe841fda3bbbfdce27372c6 for reading in non-blocking mode.
+2026-04-06T01:14:15.2235701Z Successfully opened named pipe: /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stdout_90d296da1fe841fda3bbbfdce27372c6.
+2026-04-06T01:14:15.2238308Z Successfully removed non-blocking flag from /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stdout_90d296da1fe841fda3bbbfdce27372c6.
+2026-04-06T01:14:15.2240559Z Creating stderr named pipe at /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stderr_39f9220968a5420b833874b77b041058.
+2026-04-06T01:14:15.2243261Z Successfully created stderr named pipe at: /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stderr_39f9220968a5420b833874b77b041058.
+2026-04-06T01:14:15.2254020Z Opening named pipe /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stderr_39f9220968a5420b833874b77b041058 for reading in non-blocking mode.
+2026-04-06T01:14:15.2262008Z Successfully opened named pipe: /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stderr_39f9220968a5420b833874b77b041058.
+2026-04-06T01:14:15.2263243Z Successfully removed non-blocking flag from /podr/container/pipe/ad441d0bb097_network-monitor-pro-anna/stderr_39f9220968a5420b833874b77b041058.
+2026-04-06T01:14:15.2283055Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-06T01:14:15.8028007Z Starting container: ad441d0bb097_network-monitor-pro-anna.
+2026-04-06T01:14:15.8527314Z Starting watchers and probes.
+2026-04-06T01:14:15.8532592Z Starting metrics collection.
+2026-04-06T01:14:15.8546060Z Container is running.
+2026-04-06T01:14:15.8547431Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:14:15.9269704Z Container start method finished after 1180 ms.
+2026-04-06T01:14:15.9279058Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:14:15.9308340Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-06T01:14:29.9929574Z Site startup probe succeeded after 14.0434749 seconds.
+2026-04-06T01:14:30.1560360Z State: Starting, Action: WarmUpProbeSucceeded, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site startup probe succeeded after 14.0434749 seconds., DetailsLevel: INFO
+2026-04-06T01:14:30.2445754Z Site is running with deployment version: d90269b0-b10e-4ee4-bdb0-12d35c1ca943
+2026-04-06T01:14:30.2459757Z Site started.
+2026-04-06T01:14:30.2462314Z State: Started, Action: None, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site started at 04/06/2026 01:14:30 (UTC), DetailsLevel: INFO
+2026-04-06T01:14:30.3693366Z Site is running with patch version PYTHON 3.10.19
+2026-04-06T01:28:54.8850793Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-06T01:28:55.7345519Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-06T01:28:55.7375650Z Container start method called.
+2026-04-06T01:28:55.7395236Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:28:55.7398482Z Establishing network.
+2026-04-06T01:28:55.7431582Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-06T01:28:56.0340542Z Container is starting.
+2026-04-06T01:28:56.0342028Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:28:56.0344968Z Establishing user namespace if not established already.
+2026-04-06T01:28:56.0352291Z Establishing network if not established already.
+2026-04-06T01:28:56.0354810Z Mounting volumes.
+2026-04-06T01:28:56.0376062Z Nested mountpoint 
+2026-04-06T01:28:56.0438677Z Nested mountpoint volatile/logs
+2026-04-06T01:28:56.0491168Z Nested mountpoint 
+2026-04-06T01:28:56.0516852Z Nested mountpoint 
+2026-04-06T01:28:56.0605857Z Nested mountpoint 
+2026-04-06T01:28:56.1498266Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for network-monitor-pro-anna. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-06T01:28:56.1499164Z Creating container.
+2026-04-06T01:28:56.1499802Z Creating pipes for streaming container io.
+2026-04-06T01:28:56.1500513Z Creating stdout named pipe at /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stdout_880162fb6bec4407a399950fdca50a73.
+2026-04-06T01:28:56.1526802Z Successfully created stdout named pipe at: /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stdout_880162fb6bec4407a399950fdca50a73.
+2026-04-06T01:28:56.1533152Z Opening named pipe /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stdout_880162fb6bec4407a399950fdca50a73 for reading in non-blocking mode.
+2026-04-06T01:28:56.1538503Z Successfully opened named pipe: /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stdout_880162fb6bec4407a399950fdca50a73.
+2026-04-06T01:28:56.1541994Z Successfully removed non-blocking flag from /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stdout_880162fb6bec4407a399950fdca50a73.
+2026-04-06T01:28:56.1551295Z Creating stderr named pipe at /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stderr_70e26351e6164952af29a56d51d30137.
+2026-04-06T01:28:56.1558191Z Successfully created stderr named pipe at: /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stderr_70e26351e6164952af29a56d51d30137.
+2026-04-06T01:28:56.1559649Z Opening named pipe /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stderr_70e26351e6164952af29a56d51d30137 for reading in non-blocking mode.
+2026-04-06T01:28:56.1561077Z Successfully opened named pipe: /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stderr_70e26351e6164952af29a56d51d30137.
+2026-04-06T01:28:56.1573682Z Successfully removed non-blocking flag from /podr/container/pipe/1a4334bc87dd_network-monitor-pro-anna/stderr_70e26351e6164952af29a56d51d30137.
+2026-04-06T01:28:56.1576585Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-06T01:28:56.5487932Z Starting container: 1a4334bc87dd_network-monitor-pro-anna.
+2026-04-06T01:28:56.5697240Z Starting watchers and probes.
+2026-04-06T01:28:56.5699770Z Starting metrics collection.
+2026-04-06T01:28:56.5701414Z Container is running.
+2026-04-06T01:28:56.5702208Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:28:56.5868726Z Container start method finished after 849 ms.
+2026-04-06T01:28:56.5870815Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:28:56.5871106Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-06T01:29:08.6684254Z Site startup probe succeeded after 12.0782887 seconds.
+2026-04-06T01:29:08.7251464Z State: Starting, Action: WarmUpProbeSucceeded, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site startup probe succeeded after 12.0782887 seconds., DetailsLevel: INFO
+2026-04-06T01:29:08.7647451Z Site is running with deployment version: 8fc139d6-4746-49d2-8f4a-2b7364cdb50d
+2026-04-06T01:29:08.7660476Z Site started.
+2026-04-06T01:29:08.7661332Z State: Started, Action: None, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site started at 04/06/2026 01:29:08 (UTC), DetailsLevel: INFO
+2026-04-06T01:29:08.7664399Z Site is running with patch version PYTHON 3.10.19
+2026-04-06T01:29:28.8167279Z State: Stopping, Action: StoppingSite, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site started at 04/06/2026 01:14:30 (UTC), DetailsLevel: INFO
+2026-04-06T01:29:28.8234064Z State: Stopping, Action: StoppingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site started at 04/06/2026 01:14:30 (UTC), DetailsLevel: INFO
+2026-04-06T01:29:28.8276120Z Container is terminating. Grace period: 5 seconds.
+2026-04-06T01:29:28.8617263Z Stop and delete container. Retry count = 0
+2026-04-06T01:29:28.8628103Z Stopping container: ad441d0bb097_network-monitor-pro-anna.
+2026-04-06T01:29:34.4127960Z Deleting container: ad441d0bb097_network-monitor-pro-anna. Retry count = 0
+2026-04-06T01:29:35.1982936Z Container spec TerminationMessagePolicy  path 
+2026-04-06T01:29:35.2010301Z Container is terminated. Total time elapsed: 6372 ms.
+2026-04-06T01:29:35.2045895Z Site: network-monitor-pro-anna stopped.
+2026-04-06T01:31:05.7953633Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-06T01:31:06.8866885Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-04-06T01:31:06.8884264Z Container start method called.
+2026-04-06T01:31:06.8887019Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:31:06.8888657Z Establishing network.
+2026-04-06T01:31:06.8890164Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-06T01:31:07.1811107Z Container is starting.
+2026-04-06T01:31:07.1812019Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:31:07.1813423Z Establishing user namespace if not established already.
+2026-04-06T01:31:07.1814798Z Establishing network if not established already.
+2026-04-06T01:31:07.1816548Z Mounting volumes.
+2026-04-06T01:31:07.1818747Z Nested mountpoint 
+2026-04-06T01:31:07.1967547Z Nested mountpoint volatile/logs
+2026-04-06T01:31:07.2066863Z Nested mountpoint 
+2026-04-06T01:31:07.2195032Z Nested mountpoint 
+2026-04-06T01:31:07.2216737Z Nested mountpoint 
+2026-04-06T01:31:07.3277505Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for network-monitor-pro-anna. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-06T01:31:07.3296508Z Creating container.
+2026-04-06T01:31:07.3298263Z Creating pipes for streaming container io.
+2026-04-06T01:31:07.3301402Z Creating stdout named pipe at /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stdout_c733c1829978422091baf2ab34c4b8b0.
+2026-04-06T01:31:07.3388513Z Successfully created stdout named pipe at: /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stdout_c733c1829978422091baf2ab34c4b8b0.
+2026-04-06T01:31:07.3390248Z Opening named pipe /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stdout_c733c1829978422091baf2ab34c4b8b0 for reading in non-blocking mode.
+2026-04-06T01:31:07.3391777Z Successfully opened named pipe: /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stdout_c733c1829978422091baf2ab34c4b8b0.
+2026-04-06T01:31:07.3393849Z Successfully removed non-blocking flag from /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stdout_c733c1829978422091baf2ab34c4b8b0.
+2026-04-06T01:31:07.3395657Z Creating stderr named pipe at /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stderr_d60fb8ac68ad4a2ca34620a35d135e5a.
+2026-04-06T01:31:07.3398684Z Successfully created stderr named pipe at: /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stderr_d60fb8ac68ad4a2ca34620a35d135e5a.
+2026-04-06T01:31:07.3399929Z Opening named pipe /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stderr_d60fb8ac68ad4a2ca34620a35d135e5a for reading in non-blocking mode.
+2026-04-06T01:31:07.3402408Z Successfully opened named pipe: /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stderr_d60fb8ac68ad4a2ca34620a35d135e5a.
+2026-04-06T01:31:07.3436157Z Successfully removed non-blocking flag from /podr/container/pipe/7e6d51513bec_network-monitor-pro-anna/stderr_d60fb8ac68ad4a2ca34620a35d135e5a.
+2026-04-06T01:31:07.3441418Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-06T01:31:07.7233566Z Starting container: 7e6d51513bec_network-monitor-pro-anna.
+2026-04-06T01:31:07.7586232Z Starting watchers and probes.
+2026-04-06T01:31:07.7616392Z Starting metrics collection.
+2026-04-06T01:31:07.7649001Z Container is running.
+2026-04-06T01:31:07.7650839Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:31:07.7905555Z Container start method finished after 901 ms.
+2026-04-06T01:31:07.8137354Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:31:07.8138734Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-06T01:31:13.0310595Z Site startup probe failed after 5.2156149 seconds.
+2026-04-06T01:31:13.3013601Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: ERR
+2026-04-06T01:31:13.3478439Z Failed to start site. Revert by stopping site.
+2026-04-06T01:31:13.3481633Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: ERR
+2026-04-06T01:31:13.3946570Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: ERR
+2026-04-06T01:31:13.3948696Z Container is terminating. Grace period: 5 seconds.
+2026-04-06T01:31:13.4142838Z Stop and delete container. Retry count = 0
+2026-04-06T01:31:13.4145110Z Stopping container: 7e6d51513bec_network-monitor-pro-anna.
+2026-04-06T01:31:18.5948568Z Deleting container: 7e6d51513bec_network-monitor-pro-anna. Retry count = 0
+2026-04-06T01:31:20.6759142Z Container spec TerminationMessagePolicy  path 
+2026-04-06T01:31:20.6761060Z Container is terminated. Total time elapsed: 7281 ms.
+2026-04-06T01:31:20.6762381Z Site container: network-monitor-pro-anna terminated during site startup.
+2026-04-06T01:31:20.6812291Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: network-monitor-pro-anna terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-04-06T01:31:20.6828551Z Site: network-monitor-pro-anna stopped.
+2026-04-06T01:31:41.4365543Z State: Stopping, Action: StoppingSite, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site started at 04/06/2026 01:29:08 (UTC), DetailsLevel: INFO
+2026-04-06T01:31:41.4374386Z State: Stopping, Action: StoppingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site started at 04/06/2026 01:29:08 (UTC), DetailsLevel: INFO
+2026-04-06T01:31:41.4376738Z Container is terminating. Grace period: 5 seconds.
+2026-04-06T01:31:41.4420243Z Stop and delete container. Retry count = 0
+2026-04-06T01:31:41.4427959Z Stopping container: 1a4334bc87dd_network-monitor-pro-anna.
+2026-04-06T01:31:46.5244264Z Deleting container: 1a4334bc87dd_network-monitor-pro-anna. Retry count = 0
+2026-04-06T01:31:47.6563781Z Container spec TerminationMessagePolicy  path 
+2026-04-06T01:31:47.6571193Z Container is terminated. Total time elapsed: 6218 ms.
+2026-04-06T01:31:47.6572826Z Site: network-monitor-pro-anna stopped.
+2026-04-06T01:41:13.8840139Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/06/2026 01:31:21 (UTC), DetailsLevel: ERR
+2026-04-06T01:41:14.5779203Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 04/06/2026 01:31:21 (UTC), DetailsLevel: ERR
+2026-04-06T01:41:14.5782649Z Container start method called.
+2026-04-06T01:41:14.5783422Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:41:14.5784715Z Establishing network.
+2026-04-06T01:41:14.5786046Z Pulling image: appsvc/python:3.10_20260203.2.tuxprod.
+2026-04-06T01:41:14.8071539Z Container is starting.
+2026-04-06T01:41:14.8073764Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for network-monitor-pro-anna., DetailsLevel: INFO
+2026-04-06T01:41:14.8077292Z Establishing user namespace if not established already.
+2026-04-06T01:41:14.8078961Z Establishing network if not established already.
+2026-04-06T01:41:14.8080284Z Mounting volumes.
+2026-04-06T01:41:14.8096480Z Nested mountpoint 
+2026-04-06T01:41:14.8124096Z Nested mountpoint volatile/logs
+2026-04-06T01:41:14.8195626Z Nested mountpoint 
+2026-04-06T01:41:14.8280768Z Nested mountpoint 
+2026-04-06T01:41:14.8492755Z Nested mountpoint 
+2026-04-06T01:41:14.8557931Z Nested mountpoint 
+2026-04-06T01:41:15.1989881Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for network-monitor-pro-anna. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-04-06T01:41:15.1995747Z Creating container.
+2026-04-06T01:41:15.1997716Z Creating pipes for streaming container io.
+2026-04-06T01:41:15.1999585Z Creating stdout named pipe at /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stdout_26fb34f96b8546bea4ec6b81a7fb837f.
+2026-04-06T01:41:15.2007720Z Successfully created stdout named pipe at: /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stdout_26fb34f96b8546bea4ec6b81a7fb837f.
+2026-04-06T01:41:15.2009593Z Opening named pipe /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stdout_26fb34f96b8546bea4ec6b81a7fb837f for reading in non-blocking mode.
+2026-04-06T01:41:15.2012213Z Successfully opened named pipe: /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stdout_26fb34f96b8546bea4ec6b81a7fb837f.
+2026-04-06T01:41:15.2014079Z Successfully removed non-blocking flag from /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stdout_26fb34f96b8546bea4ec6b81a7fb837f.
+2026-04-06T01:41:15.2018162Z Creating stderr named pipe at /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stderr_37b82faad33d436fb9db9f8c97057fd4.
+2026-04-06T01:41:15.2020345Z Successfully created stderr named pipe at: /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stderr_37b82faad33d436fb9db9f8c97057fd4.
+2026-04-06T01:41:15.2022066Z Opening named pipe /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stderr_37b82faad33d436fb9db9f8c97057fd4 for reading in non-blocking mode.
+2026-04-06T01:41:15.2023965Z Successfully opened named pipe: /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stderr_37b82faad33d436fb9db9f8c97057fd4.
+2026-04-06T01:41:15.2025290Z Successfully removed non-blocking flag from /podr/container/pipe/75ec2f50c58f_network-monitor-pro-anna/stderr_37b82faad33d436fb9db9f8c97057fd4.
+2026-04-06T01:41:15.2041085Z Creating container with image: appsvc/python:3.10_20260203.2.tuxprod from registry: 10.1.0.4:13209 and fully qualified image name: 10.1.0.4:13209/appsvc/python:3.10_20260203.2.tuxprod
+2026-04-06T01:41:15.5388133Z Starting container: 75ec2f50c58f_network-monitor-pro-anna.
+2026-04-06T01:41:15.5644508Z Starting watchers and probes.
+2026-04-06T01:41:15.5647153Z Starting metrics collection.
+2026-04-06T01:41:15.5649155Z Container is running.
+2026-04-06T01:41:15.5660544Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:41:15.5834713Z Container start method finished after 1003 ms.
+2026-04-06T01:41:15.5836948Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container network-monitor-pro-anna successfully created and is running., DetailsLevel: INFO
+2026-04-06T01:41:15.5837339Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-04-06T01:41:26.6137380Z Site startup probe succeeded after 11.0281075 seconds.
+2026-04-06T01:41:26.6795330Z State: Starting, Action: WarmUpProbeSucceeded, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site startup probe succeeded after 11.0281075 seconds., DetailsLevel: INFO
+2026-04-06T01:41:26.7302714Z Site is running with deployment version: b884450b-201f-4af6-8470-627db6a58b80
+2026-04-06T01:41:26.7310665Z Site started.
+2026-04-06T01:41:26.7337782Z State: Started, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 04/06/2026 01:31:13, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site started at 04/06/2026 01:41:26 (UTC), DetailsLevel: INFO
+2026-04-06T01:41:26.7391188Z Site is running with patch version PYTHON 3.10.19

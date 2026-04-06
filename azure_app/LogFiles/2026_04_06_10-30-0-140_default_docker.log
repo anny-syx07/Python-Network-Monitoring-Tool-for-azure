@@ -1,0 +1,292 @@
+2026-04-06T01:14:16.0028506Z    _____                               
+2026-04-06T01:14:16.0042005Z   /  _  \ __________ _________   ____  
+2026-04-06T01:14:16.0042554Z  /  /_\  \\___   /  |  \_  __ \_/ __ \ 
+2026-04-06T01:14:16.0042607Z /    |    \/    /|  |  /|  | \/\  ___/ 
+2026-04-06T01:14:16.0042652Z \____|__  /_____ \____/ |__|    \___  >
+2026-04-06T01:14:16.0042695Z         \/      \/                  \/ 
+2026-04-06T01:14:16.0042758Z A P P   S E R V I C E   O N   L I N U X
+2026-04-06T01:14:16.0042799Z 
+2026-04-06T01:14:16.0042860Z Documentation    : http://aka.ms/webapp-linux
+2026-04-06T01:14:16.0042903Z Python quickstart: https://aka.ms/python-qs
+2026-04-06T01:14:16.0042950Z Python version   : 3.10.19
+2026-04-06T01:14:16.0042989Z Instance Name    : 10-30-0-140
+2026-04-06T01:14:16.0043100Z Instance Id      : 9be4b8e022d07610be288d9acbc9280ae50fd944942360603a31288ed1ee591e
+2026-04-06T01:14:16.0043140Z 
+2026-04-06T01:14:16.0043260Z Note: Any data outside '/home' is not persisted
+2026-04-06T01:14:16.5093099Z Starting OpenBSD Secure Shell server: sshd.
+2026-04-06T01:14:16.5173719Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
+2026-04-06T01:14:16.5635262Z Updating certificates in /etc/ssl/certs...
+2026-04-06T01:14:22.6154666Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_ECC_Root_CA_2022.pem
+2026-04-06T01:14:22.6155249Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_R46.pem
+2026-04-06T01:14:22.6200011Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_E46.pem
+2026-04-06T01:14:22.6202713Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_RSA_Root_CA_2022.pem
+2026-04-06T01:14:22.6395656Z 4 added, 0 removed; done.
+2026-04-06T01:14:22.6653957Z Running hooks in /etc/ca-certificates/update.d...
+2026-04-06T01:14:22.6846674Z done.
+2026-04-06T01:14:22.6919213Z CA certificates copied and updated successfully.
+2026-04-06T01:14:22.7805050Z App Command Line not configured, will attempt auto-detect
+2026-04-06T01:14:22.9071932Z Starting periodic command scheduler: cron.
+2026-04-06T01:14:22.9088448Z Launching oryx with: create-script -appPath /home/site/wwwroot -output /opt/startup/startup.sh -virtualEnvName antenv -defaultApp /opt/defaultsite
+2026-04-06T01:14:22.9775143Z Found build manifest file at '/home/site/wwwroot/oryx-manifest.toml'. Deserializing it...
+2026-04-06T01:14:22.9801148Z Build Operation ID: 6da33bb9ecf07d61
+2026-04-06T01:14:22.9806778Z Output is compressed. Extracting it...
+2026-04-06T01:14:22.9807563Z Oryx Version: 0.2.20260130.1, Commit: a98e9aef5dfb6572a08b0a07ce414e1122ab4a2e, ReleaseTagName: 20260130.1
+2026-04-06T01:14:22.9819256Z Found zstd-compressed tarball.
+2026-04-06T01:14:22.9822697Z Extracting '/home/site/wwwroot/output.tar.zst' to directory '/tmp/8de9379b2ef9c1e'...
+2026-04-06T01:14:22.9822819Z Using zstd for decompression of file: /home/site/wwwroot/output.tar.zst
+2026-04-06T01:14:26.7341020Z zstd tar Successfully extracted '/home/site/wwwroot/output.tar.zst' to '/tmp/8de9379b2ef9c1e'
+2026-04-06T01:14:26.7355937Z App path is set to '/tmp/8de9379b2ef9c1e'
+2026-04-06T01:14:27.5514686Z Detected an app based on Flask
+2026-04-06T01:14:27.5515992Z Generating `gunicorn` command for 'app:app'
+2026-04-06T01:14:27.6605744Z Writing output script to '/opt/startup/startup.sh'
+2026-04-06T01:14:28.0652846Z Using packages from virtual environment antenv located at /tmp/8de9379b2ef9c1e/antenv.
+2026-04-06T01:14:28.0653222Z Updated PYTHONPATH to '/opt/startup/app_logs:/tmp/8de9379b2ef9c1e/antenv/lib/python3.10/site-packages'
+2026-04-06T01:14:29.0968977Z [2026-04-06 01:14:29 +0000] [1906] [INFO] Starting gunicorn 25.3.0
+2026-04-06T01:14:29.1323432Z [2026-04-06 01:14:29 +0000] [1906] [INFO] Listening at: http://0.0.0.0:8000 (1906)
+2026-04-06T01:14:29.1325825Z [2026-04-06 01:14:29 +0000] [1906] [INFO] Using worker: sync
+2026-04-06T01:14:29.1388688Z [2026-04-06 01:14:29 +0000] [1909] [INFO] Booting worker with pid: 1909
+2026-04-06T01:14:29.2024796Z [2026-04-06 01:14:29 +0000] [1906] [INFO] Control socket listening at /root/.gunicorn/gunicorn.ctl
+2026-04-06T01:14:29.9692209Z 169.254.129.1 - - [06/Apr/2026:01:14:29 +0000] "GET /robots933456.txt HTTP/1.1" 404 207 "-" "HealthCheck/1.0"
+2026-04-06T01:14:30.5765140Z 169.254.129.1 - - [06/Apr/2026:01:14:30 +0000] "GET / HTTP/1.1" 404 207 "-" "ReadyForRequest/1.0 (LocalCache)"
+2026-04-06T01:14:30.7089730Z 169.254.129.1 - - [06/Apr/2026:01:14:30 +0000] "GET / HTTP/1.1" 404 207 "-" "ReadyForRequest/1.0 (AppInit)"
+2026-04-06T01:17:27.5057167Z 169.254.129.1 - - [06/Apr/2026:01:17:27 +0000] "GET / HTTP/1.1" 404 207 "-" "python-urllib3/2.6.0"
+2026-04-06T01:18:42.4103063Z 169.254.129.1 - - [06/Apr/2026:01:18:42 +0000] "GET / HTTP/1.1" 404 207 "-" "python-urllib3/2.6.0"
+2026-04-06T01:20:58.4265898Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:20:57'}
+2026-04-06T01:20:58.4266282Z 169.254.129.1 - - [06/Apr/2026:01:20:58 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:01.0611451Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:00'}
+2026-04-06T01:21:01.0612168Z 169.254.129.1 - - [06/Apr/2026:01:21:01 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:03.6655872Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:03'}
+2026-04-06T01:21:03.6656311Z 169.254.129.1 - - [06/Apr/2026:01:21:03 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:06.1753126Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:05'}
+2026-04-06T01:21:06.1753684Z 169.254.129.1 - - [06/Apr/2026:01:21:06 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:08.6391258Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:08'}
+2026-04-06T01:21:08.6391760Z 169.254.129.1 - - [06/Apr/2026:01:21:08 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:11.3164076Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:10'}
+2026-04-06T01:21:11.3164477Z 169.254.129.1 - - [06/Apr/2026:01:21:11 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:13.9825281Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:13'}
+2026-04-06T01:21:13.9825869Z 169.254.129.1 - - [06/Apr/2026:01:21:13 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:16.4430528Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:16'}
+2026-04-06T01:21:16.4430909Z 169.254.129.1 - - [06/Apr/2026:01:21:16 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:18.9609638Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:18'}
+2026-04-06T01:21:18.9610064Z 169.254.129.1 - - [06/Apr/2026:01:21:18 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:21.5564862Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:21'}
+2026-04-06T01:21:21.5565301Z 169.254.129.1 - - [06/Apr/2026:01:21:21 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:24.1503698Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:23'}
+2026-04-06T01:21:24.1504231Z 169.254.129.1 - - [06/Apr/2026:01:21:24 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:26.7695264Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:26'}
+2026-04-06T01:21:26.7698953Z 169.254.129.1 - - [06/Apr/2026:01:21:26 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:29.3296347Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:28'}
+2026-04-06T01:21:29.3296736Z 169.254.129.1 - - [06/Apr/2026:01:21:29 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:31.9765670Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:31'}
+2026-04-06T01:21:31.9766054Z 169.254.129.1 - - [06/Apr/2026:01:21:31 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:34.5263562Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:34'}
+2026-04-06T01:21:34.5264192Z 169.254.129.1 - - [06/Apr/2026:01:21:34 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:37.1423681Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:36'}
+2026-04-06T01:21:37.1424123Z 169.254.129.1 - - [06/Apr/2026:01:21:37 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:39.7745441Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:39'}
+2026-04-06T01:21:39.7745964Z 169.254.129.1 - - [06/Apr/2026:01:21:39 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:42.2334212Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:41'}
+2026-04-06T01:21:42.2335060Z 169.254.129.1 - - [06/Apr/2026:01:21:42 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:44.7372857Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:44'}
+2026-04-06T01:21:44.7373194Z 169.254.129.1 - - [06/Apr/2026:01:21:44 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:47.1774030Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:46'}
+2026-04-06T01:21:47.1774417Z 169.254.129.1 - - [06/Apr/2026:01:21:47 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:49.8195621Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:49'}
+2026-04-06T01:21:49.8196467Z 169.254.129.1 - - [06/Apr/2026:01:21:49 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:52.4866367Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:51'}
+2026-04-06T01:21:52.4866825Z 169.254.129.1 - - [06/Apr/2026:01:21:52 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:55.0426322Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:54'}
+2026-04-06T01:21:55.0426874Z 169.254.129.1 - - [06/Apr/2026:01:21:55 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:21:57.6503673Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:57'}
+2026-04-06T01:21:57.6504068Z 169.254.129.1 - - [06/Apr/2026:01:21:57 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:22:00.4544177Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:21:59'}
+2026-04-06T01:22:00.4544743Z 169.254.129.1 - - [06/Apr/2026:01:22:00 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:22:03.1083019Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:22:02'}
+2026-04-06T01:22:03.1083669Z 169.254.129.1 - - [06/Apr/2026:01:22:03 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:22:05.6124298Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:22:05'}
+2026-04-06T01:22:05.6124899Z 169.254.129.1 - - [06/Apr/2026:01:22:05 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:22:08.0538372Z {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:22:07'}
+2026-04-06T01:22:08.0538802Z 169.254.129.1 - - [06/Apr/2026:01:22:08 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:28:56.6857412Z    _____                               
+2026-04-06T01:28:56.6864216Z   /  _  \ __________ _________   ____  
+2026-04-06T01:28:56.6864342Z  /  /_\  \\___   /  |  \_  __ \_/ __ \ 
+2026-04-06T01:28:56.6864387Z /    |    \/    /|  |  /|  | \/\  ___/ 
+2026-04-06T01:28:56.6864432Z \____|__  /_____ \____/ |__|    \___  >
+2026-04-06T01:28:56.6864489Z         \/      \/                  \/ 
+2026-04-06T01:28:56.6888291Z A P P   S E R V I C E   O N   L I N U X
+2026-04-06T01:28:56.6888353Z 
+2026-04-06T01:28:56.6888397Z Documentation    : http://aka.ms/webapp-linux
+2026-04-06T01:28:56.6888441Z Python quickstart: https://aka.ms/python-qs
+2026-04-06T01:28:56.6888481Z Python version   : 3.10.19
+2026-04-06T01:28:56.6888516Z Instance Name    : 10-30-0-140
+2026-04-06T01:28:56.6888582Z Instance Id      : 9be4b8e022d07610be288d9acbc9280ae50fd944942360603a31288ed1ee591e
+2026-04-06T01:28:56.6888619Z 
+2026-04-06T01:28:56.6888655Z Note: Any data outside '/home' is not persisted
+2026-04-06T01:28:56.9618356Z Starting OpenBSD Secure Shell server: sshd.
+2026-04-06T01:28:56.9968024Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
+2026-04-06T01:28:57.0434504Z Updating certificates in /etc/ssl/certs...
+2026-04-06T01:28:58.6426079Z 169.254.129.1 - - [06/Apr/2026:01:28:58 +0000] "GET / HTTP/1.1" 404 207 "-" "SiteWarmup"
+2026-04-06T01:29:02.1886557Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_ECC_Root_CA_2022.pem
+2026-04-06T01:29:02.1967029Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_R46.pem
+2026-04-06T01:29:02.2064739Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_E46.pem
+2026-04-06T01:29:02.2078843Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_RSA_Root_CA_2022.pem
+2026-04-06T01:29:02.2255908Z 4 added, 0 removed; done.
+2026-04-06T01:29:02.2256297Z Running hooks in /etc/ca-certificates/update.d...
+2026-04-06T01:29:02.2309551Z done.
+2026-04-06T01:29:02.2372092Z CA certificates copied and updated successfully.
+2026-04-06T01:29:02.2955500Z App Command Line not configured, will attempt auto-detect
+2026-04-06T01:29:02.4183155Z Starting periodic command scheduler: cron.
+2026-04-06T01:29:02.4198216Z Launching oryx with: create-script -appPath /home/site/wwwroot -output /opt/startup/startup.sh -virtualEnvName antenv -defaultApp /opt/defaultsite
+2026-04-06T01:29:02.5018534Z Found build manifest file at '/home/site/wwwroot/oryx-manifest.toml'. Deserializing it...
+2026-04-06T01:29:02.5046621Z Build Operation ID: e27c596d377e103f
+2026-04-06T01:29:02.5049613Z Oryx Version: 0.2.20260130.1, Commit: a98e9aef5dfb6572a08b0a07ce414e1122ab4a2e, ReleaseTagName: 20260130.1
+2026-04-06T01:29:02.5051635Z Output is compressed. Extracting it...
+2026-04-06T01:29:02.5054305Z Found zstd-compressed tarball.
+2026-04-06T01:29:02.5061503Z Extracting '/home/site/wwwroot/output.tar.zst' to directory '/tmp/8de937bc2d90772'...
+2026-04-06T01:29:02.5061853Z Using zstd for decompression of file: /home/site/wwwroot/output.tar.zst
+2026-04-06T01:29:05.0688604Z zstd tar Successfully extracted '/home/site/wwwroot/output.tar.zst' to '/tmp/8de937bc2d90772'
+2026-04-06T01:29:05.0694207Z App path is set to '/tmp/8de937bc2d90772'
+2026-04-06T01:29:05.8406385Z Detected an app based on Flask
+2026-04-06T01:29:05.8417986Z Generating `gunicorn` command for 'app:app'
+2026-04-06T01:29:05.9476922Z Writing output script to '/opt/startup/startup.sh'
+2026-04-06T01:29:07.8817374Z Using packages from virtual environment antenv located at /tmp/8de937bc2d90772/antenv.
+2026-04-06T01:29:07.8817778Z Updated PYTHONPATH to '/opt/startup/app_logs:/tmp/8de937bc2d90772/antenv/lib/python3.10/site-packages'
+2026-04-06T01:29:08.3183389Z [2026-04-06 01:29:08 +0000] [1907] [INFO] Starting gunicorn 25.3.0
+2026-04-06T01:29:08.3316881Z [2026-04-06 01:29:08 +0000] [1907] [INFO] Listening at: http://0.0.0.0:8000 (1907)
+2026-04-06T01:29:08.3317299Z [2026-04-06 01:29:08 +0000] [1907] [INFO] Using worker: sync
+2026-04-06T01:29:08.3357029Z [2026-04-06 01:29:08 +0000] [1910] [INFO] Booting worker with pid: 1910
+2026-04-06T01:29:08.4292032Z [2026-04-06 01:29:08 +0000] [1907] [INFO] Control socket listening at /root/.gunicorn/gunicorn.ctl
+2026-04-06T01:29:08.6654423Z 169.254.129.1 - - [06/Apr/2026:01:29:08 +0000] "GET /robots933456.txt HTTP/1.1" 404 207 "-" "HealthCheck/1.0"
+2026-04-06T01:31:07.8337440Z    _____                               
+2026-04-06T01:31:07.8339061Z   /  _  \ __________ _________   ____  
+2026-04-06T01:31:07.8339128Z  /  /_\  \\___   /  |  \_  __ \_/ __ \ 
+2026-04-06T01:31:07.8339157Z /    |    \/    /|  |  /|  | \/\  ___/ 
+2026-04-06T01:31:07.8339184Z \____|__  /_____ \____/ |__|    \___  >
+2026-04-06T01:31:07.8339217Z         \/      \/                  \/ 
+2026-04-06T01:31:07.8339264Z A P P   S E R V I C E   O N   L I N U X
+2026-04-06T01:31:07.8339342Z 
+2026-04-06T01:31:07.8339389Z Documentation    : http://aka.ms/webapp-linux
+2026-04-06T01:31:07.8339434Z Python quickstart: https://aka.ms/python-qs
+2026-04-06T01:31:07.8339480Z Python version   : 3.10.19
+2026-04-06T01:31:07.8339521Z Instance Name    : 10-30-0-140
+2026-04-06T01:31:07.8339564Z Instance Id      : 9be4b8e022d07610be288d9acbc9280ae50fd944942360603a31288ed1ee591e
+2026-04-06T01:31:07.8339613Z 
+2026-04-06T01:31:07.8339653Z Note: Any data outside '/home' is not persisted
+2026-04-06T01:31:08.2428283Z Starting OpenBSD Secure Shell server: sshd.
+2026-04-06T01:31:08.2594229Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
+2026-04-06T01:31:08.2930058Z Updating certificates in /etc/ssl/certs...
+2026-04-06T01:31:14.8374737Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_ECC_Root_CA_2022.pem
+2026-04-06T01:31:14.8425094Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_R46.pem
+2026-04-06T01:31:14.8491929Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_E46.pem
+2026-04-06T01:31:14.8496322Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_RSA_Root_CA_2022.pem
+2026-04-06T01:31:14.9110540Z 4 added, 0 removed; done.
+2026-04-06T01:31:14.9114510Z Running hooks in /etc/ca-certificates/update.d...
+2026-04-06T01:31:14.9252225Z done.
+2026-04-06T01:31:14.9391781Z CA certificates copied and updated successfully.
+2026-04-06T01:31:15.0500385Z App Command Line not configured, will attempt auto-detect
+2026-04-06T01:31:15.3148778Z Starting periodic command scheduler: cron.
+2026-04-06T01:31:15.3182953Z Launching oryx with: create-script -appPath /home/site/wwwroot -output /opt/startup/startup.sh -virtualEnvName antenv -defaultApp /opt/defaultsite
+2026-04-06T01:31:15.4021938Z Found build manifest file at '/home/site/wwwroot/oryx-manifest.toml'. Deserializing it...
+2026-04-06T01:31:15.4040647Z Build Operation ID: 83fc3a6507faaa69
+2026-04-06T01:31:15.4045099Z Oryx Version: 0.2.20260130.1, Commit: a98e9aef5dfb6572a08b0a07ce414e1122ab4a2e, ReleaseTagName: 20260130.1
+2026-04-06T01:31:15.4045093Z Output is compressed. Extracting it...
+2026-04-06T01:31:15.4046343Z Found zstd-compressed tarball.
+2026-04-06T01:31:15.4053027Z Extracting '/home/site/wwwroot/output.tar.zst' to directory '/tmp/8de937c159a181d'...
+2026-04-06T01:31:15.4053125Z Using zstd for decompression of file: /home/site/wwwroot/output.tar.zst
+2026-04-06T01:41:15.6613523Z    _____                               
+2026-04-06T01:41:15.6640806Z   /  _  \ __________ _________   ____  
+2026-04-06T01:41:15.6641237Z  /  /_\  \\___   /  |  \_  __ \_/ __ \ 
+2026-04-06T01:41:15.6641289Z /    |    \/    /|  |  /|  | \/\  ___/ 
+2026-04-06T01:41:15.6641331Z \____|__  /_____ \____/ |__|    \___  >
+2026-04-06T01:41:15.6641369Z         \/      \/                  \/ 
+2026-04-06T01:41:15.6641435Z A P P   S E R V I C E   O N   L I N U X
+2026-04-06T01:41:15.6641474Z 
+2026-04-06T01:41:15.6641518Z Documentation    : http://aka.ms/webapp-linux
+2026-04-06T01:41:15.6641556Z Python quickstart: https://aka.ms/python-qs
+2026-04-06T01:41:15.6641597Z Python version   : 3.10.19
+2026-04-06T01:41:15.6641633Z Instance Name    : 10-30-0-140
+2026-04-06T01:41:15.6641685Z Instance Id      : 9be4b8e022d07610be288d9acbc9280ae50fd944942360603a31288ed1ee591e
+2026-04-06T01:41:15.6641721Z 
+2026-04-06T01:41:15.6641756Z Note: Any data outside '/home' is not persisted
+2026-04-06T01:41:15.9592455Z Starting OpenBSD Secure Shell server: sshd.
+2026-04-06T01:41:15.9670392Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
+2026-04-06T01:41:15.9999618Z Updating certificates in /etc/ssl/certs...
+2026-04-06T01:41:20.7041023Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_ECC_Root_CA_2022.pem
+2026-04-06T01:41:20.7075681Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_R46.pem
+2026-04-06T01:41:20.7155483Z rehash: warning: skipping duplicate certificate in azl_Sectigo_Public_Server_Authentication_Root_E46.pem
+2026-04-06T01:41:20.7162179Z rehash: warning: skipping duplicate certificate in azl_SSL.com_TLS_RSA_Root_CA_2022.pem
+2026-04-06T01:41:20.7270457Z 4 added, 0 removed; done.
+2026-04-06T01:41:20.7275219Z Running hooks in /etc/ca-certificates/update.d...
+2026-04-06T01:41:20.7303178Z done.
+2026-04-06T01:41:20.7368800Z CA certificates copied and updated successfully.
+2026-04-06T01:41:20.7883727Z App Command Line not configured, will attempt auto-detect
+2026-04-06T01:41:20.9011594Z Starting periodic command scheduler: cron.
+2026-04-06T01:41:20.9016832Z Launching oryx with: create-script -appPath /home/site/wwwroot -output /opt/startup/startup.sh -virtualEnvName antenv -defaultApp /opt/defaultsite
+2026-04-06T01:41:20.9698778Z Found build manifest file at '/home/site/wwwroot/oryx-manifest.toml'. Deserializing it...
+2026-04-06T01:41:20.9780970Z Build Operation ID: 83fc3a6507faaa69
+2026-04-06T01:41:20.9789488Z Output is compressed. Extracting it...
+2026-04-06T01:41:20.9789773Z Oryx Version: 0.2.20260130.1, Commit: a98e9aef5dfb6572a08b0a07ce414e1122ab4a2e, ReleaseTagName: 20260130.1
+2026-04-06T01:41:20.9800723Z Found zstd-compressed tarball.
+2026-04-06T01:41:20.9803435Z Extracting '/home/site/wwwroot/output.tar.zst' to directory '/tmp/8de937c159a181d'...
+2026-04-06T01:41:20.9803539Z Using zstd for decompression of file: /home/site/wwwroot/output.tar.zst
+2026-04-06T01:41:24.0026424Z zstd tar Successfully extracted '/home/site/wwwroot/output.tar.zst' to '/tmp/8de937c159a181d'
+2026-04-06T01:41:24.0026936Z App path is set to '/tmp/8de937c159a181d'
+2026-04-06T01:41:24.8713855Z Detected an app based on Flask
+2026-04-06T01:41:24.8745513Z Generating `gunicorn` command for 'app:app'
+2026-04-06T01:41:24.9829775Z Writing output script to '/opt/startup/startup.sh'
+2026-04-06T01:41:25.2498475Z Using packages from virtual environment antenv located at /tmp/8de937c159a181d/antenv.
+2026-04-06T01:41:25.2499195Z Updated PYTHONPATH to '/opt/startup/app_logs:/tmp/8de937c159a181d/antenv/lib/python3.10/site-packages'
+2026-04-06T01:41:25.7540511Z [2026-04-06 01:41:25 +0000] [1906] [INFO] Starting gunicorn 25.3.0
+2026-04-06T01:41:25.7859076Z [2026-04-06 01:41:25 +0000] [1906] [INFO] Listening at: http://0.0.0.0:8000 (1906)
+2026-04-06T01:41:25.7875997Z [2026-04-06 01:41:25 +0000] [1906] [INFO] Using worker: sync
+2026-04-06T01:41:25.7953193Z [2026-04-06 01:41:25 +0000] [1909] [INFO] Booting worker with pid: 1909
+2026-04-06T01:41:25.8965216Z [2026-04-06 01:41:25 +0000] [1906] [INFO] Control socket listening at /root/.gunicorn/gunicorn.ctl
+2026-04-06T01:41:26.6168409Z 169.254.129.1 - - [06/Apr/2026:01:41:26 +0000] "GET /robots933456.txt HTTP/1.1" 404 207 "-" "HealthCheck/1.0"
+2026-04-06T01:41:26.8954404Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:26'}
+2026-04-06T01:41:26.9242194Z 169.254.129.1 - - [06/Apr/2026:01:41:26 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:29.4800395Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:28'}
+2026-04-06T01:41:29.5204523Z 169.254.129.1 - - [06/Apr/2026:01:41:29 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:31.9959265Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:31'}
+2026-04-06T01:41:32.0221283Z 169.254.129.1 - - [06/Apr/2026:01:41:32 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:34.5489966Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:34'}
+2026-04-06T01:41:34.5728162Z 169.254.129.1 - - [06/Apr/2026:01:41:34 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:37.0181319Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:36'}
+2026-04-06T01:41:37.0406906Z 169.254.129.1 - - [06/Apr/2026:01:41:37 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:39.5019547Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:39'}
+2026-04-06T01:41:39.5285408Z 169.254.129.1 - - [06/Apr/2026:01:41:39 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:42.0866079Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:41'}
+2026-04-06T01:41:42.1120460Z 169.254.129.1 - - [06/Apr/2026:01:41:42 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:44.6293093Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:44'}
+2026-04-06T01:41:44.6582479Z 169.254.129.1 - - [06/Apr/2026:01:41:44 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:47.2219382Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:46'}
+2026-04-06T01:41:47.2481756Z 169.254.129.1 - - [06/Apr/2026:01:41:47 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:49.7093275Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:49'}
+2026-04-06T01:41:49.7338860Z 169.254.129.1 - - [06/Apr/2026:01:41:49 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:52.1678328Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:51'}
+2026-04-06T01:41:52.1973957Z 169.254.129.1 - - [06/Apr/2026:01:41:52 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:54.6528132Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:54'}
+2026-04-06T01:41:54.6783882Z 169.254.129.1 - - [06/Apr/2026:01:41:54 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:57.2246904Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:56'}
+2026-04-06T01:41:57.2495500Z 169.254.129.1 - - [06/Apr/2026:01:41:57 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:41:59.7323404Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:41:59'}
+2026-04-06T01:41:59.7572934Z 169.254.129.1 - - [06/Apr/2026:01:41:59 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:02.3542723Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:01'}
+2026-04-06T01:42:02.3850915Z 169.254.129.1 - - [06/Apr/2026:01:42:02 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:04.8364632Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:04'}
+2026-04-06T01:42:04.8620867Z 169.254.129.1 - - [06/Apr/2026:01:42:04 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:07.3170391Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:06'}
+2026-04-06T01:42:07.3475690Z 169.254.129.1 - - [06/Apr/2026:01:42:07 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:09.8871683Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:09'}
+2026-04-06T01:42:09.9649536Z 169.254.129.1 - - [06/Apr/2026:01:42:09 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:12.6620754Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:12'}
+2026-04-06T01:42:12.7599082Z 169.254.129.1 - - [06/Apr/2026:01:42:12 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:15.2991960Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:14'}
+2026-04-06T01:42:15.3682938Z 169.254.129.1 - - [06/Apr/2026:01:42:15 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:17.8231567Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:17'}
+2026-04-06T01:42:17.9324153Z 169.254.129.1 - - [06/Apr/2026:01:42:17 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:20.4065958Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:19'}
+2026-04-06T01:42:20.4976201Z 169.254.129.1 - - [06/Apr/2026:01:42:20 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:23.0160581Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:22'}
+2026-04-06T01:42:23.0845026Z 169.254.129.1 - - [06/Apr/2026:01:42:23 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
+2026-04-06T01:42:25.4958396Z Nhận dữ liệu: {'ip': '8.8.8.8', 'status': 'Online', 'time': '08:42:25'}
+2026-04-06T01:42:25.5339845Z 169.254.129.1 - - [06/Apr/2026:01:42:25 +0000] "POST /api/log HTTP/1.1" 200 16 "-" "python-requests/2.33.1"
