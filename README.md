@@ -1,36 +1,59 @@
-# Network Monitoring & Security System (Azure Cloud)
+# 🌐 Python Network Monitoring Tool (mini-NMS)
 
-This project is a comprehensive network monitoring solution featuring a real-time Python desktop application (Tkinter) and a localized Azure Flask API for persistent logging and monitoring.
-
-## 🚀 Key Features
-- **Real-time Monitoring**: Ping targets with live status updates (Online/Offline).
-- **Interactive Visualizations**: Dynamic Matplotlib graphs showing connection stability over time.
-- **LAN Scanning**: Quickly scan local IP ranges (e.g., .1 to .10) to discover active devices.
-- **Cloud Integration**: Data is automatically sent to an Azure-hosted Flask API for centralized logging.
-- **Security Hardening**: Secure API communication using Bearer Token authentication (`Anna-Secret-Token-2026`).
-- **Fail-safe Logging**: Local CSV backup (`log.csv`) ensures data integrity if the cloud is unreachable.
-
-## 📁 Project Structure
-- `monitor.py`: Main desktop application GUI and logic.
-- `azure_app/app.py`: Flask-based API for handling cloud logs.
-- `log.csv`: Local backup dataset.
-- `requirements.txt`: Python dependencies needed for local and cloud environments.
-
-## 🛠 Setup & Installation
-1. **Local App**:
-   ```bash
-   pip install -r requirements.txt
-   python monitor.py
-   ```
-2. **Azure Deployment**:
-   - The Flask app is pre-configured for Azure App Service.
-   - Authentication is managed via `Authorization` headers.
-
-## 🎓 Defense Documentation
-This project was built for the Final Academic Defense (2026), focusing on:
-1. **Cloud Architecture**: Integrating Desktop Apps with Azure App Services.
-2. **Persistent Storage**: Handling real-time data flow.
-3. **Security**: Implementing authentication tokens for API security.
+> **Đồ án môn học: Lập trình mạng và hệ thống**  
+> Dự án giám sát trạng thái mạng 24/7 và xuất báo cáo CSV tự động.
 
 ---
-*Developed as a high-performance network diagnostic tool.*
+
+## 📋 Giới thiệu
+Đây là công cụ giám sát mạng được viết bằng **Python thuần**, không phụ thuộc thư viện ngoài. Hệ thống có khả năng giám sát hàng loạt Host và Port cùng lúc thông qua cơ chế đa luồng (Threading).
+
+### Các tính năng chính:
+- **Ping Monitoring**: Kiểm tra độ trễ (latency) và trạng thái sống/chết của Host.
+- **Port Monitoring**: Kiểm tra các dịch vụ ứng dụng (HTTP, SSH, MySQL...) qua TCP Port.
+- **Downtime Tracking**: Tự động tính toán thời gian chết (Downtime) của từng dịch vụ.
+- **Cloud Deployment**: Chạy 24/7 trên **Azure Container Instances (ACI)**.
+- **Auto Reports**: Tự động xuất file báo cáo CSV vào **Azure Storage** mỗi 60 giây.
+
+---
+
+## 🗂️ Cấu trúc dự án
+- `monitor.py`: Luồng xử lý chính, quản lý các Thread giám sát.
+- `pinger.py` & `port_checker.py`: Module thực hiện ping và quét port.
+- `logger.py` & `reporter.py`: Ghi nhật ký hệ thống và xuất báo cáo CSV.
+- `deploy.sh`: **Script 1-Click** để cập nhật code lên Azure.
+- `hosts.txt`: File cấu hình danh sách IP/Domain cần giám sát.
+
+---
+
+## 🚀 Hướng dẫn vận hành
+
+### 1. Cách chạy trên máy cá nhân (Local)
+Dùng để kiểm tra code hoặc giám sát nhanh:
+```bash
+python monitor.py --file hosts.txt --interval 30
+```
+
+### 2. Cách triển khai lên Azure (Dành cho Trưởng nhóm)
+Mỗi khi sửa code, anh chỉ cần chạy lệnh sau để hệ thống tự động cập nhật lên đám mây:
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+---
+
+## 📂 Cách lấy báo cáo (Dành cho cả nhóm)
+Nhóm có thể lấy báo cáo 24/7 mà không cần máy tính của trưởng nhóm phải bật:
+1. Đăng nhập **Azure Portal**.
+2. Tìm Storage Account: `pynetmonstorage999`.
+3. Vào **File shares** -> `csvreports`.
+4. Tại mục **Browse** (Parcourir), các file CSV mới nhất sẽ xuất hiện tại đây.
+
+---
+
+## 👤 Thông tin thực hiện
+- **Lớp**: [Điền tên lớp]
+- **Nhóm thực hiện**: [Điền tên các thành viên]
+- **Trưởng nhóm**: buianna1999
+- **Link GitHub**: [Link của anh]

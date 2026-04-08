@@ -1,168 +1,383 @@
-import tkinter as tk
-from tkinter import messagebox
-from ping3 import ping
-import time
+"""
+monitor.py - File chính của Network Monitoring Tool
+Tích hợp ping, port check, logging và xuất CSV report
+Sử dụng threading để giám sát song song
+"""
+
+import argparse
 import threading
-import csv
-import requests
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+import time
+import sys
+import signal
+import json
+import os
+from datetime import datetime
 
-# ===== AZURE (Flask Server API) =====
-AZURE_API_URL = "https://network-monitor-pro-anna.azurewebsites.net/api/log"
+# Import các module tự tạo
+from pinger import ping_host
+from port_checker import check_port
+from logger import setup_logger, DowntimeTracker
+from reporter import (
+    export_ping_report,
+    export_port_report,
+    export_downtime_report,
+    export_summary_report
+)
 
-# ===== GLOBAL VARIABLES =====
-running = False
-times = []
-status_values = []
-MAX_DATA_POINTS = 60  # Giới hạn 60 điểm để biểu đồ không bị rối
-ani = None  # Biến lưu trữ Animation của biểu đồ để không bị lỗi
 
-# ===== CHECK NETWORK =====
-def check_network():
-    global running, times, status_values
-    while running:
-        ip = entry_ip.get()
-        # Thêm timeout=1 để không bị treo nếu mất mạng hoàn toàn
-        result = ping(ip, timeout=1) 
+# ─── Biến toàn cục ────────────────────────────────────────────────────────────
+ping_results_history = []       # Lưu toàn bộ lịch sử ping
+port_results_history = []       # Lưu toàn bộ lịch sử port check
+results_lock = threading.Lock() # Khoá để tránh race condition
+stop_event = threading.Event()  # Sự kiện dừng tất cả thread
+downtime_tracker = DowntimeTracker()
+logger = None
 
-        status = 1 if result else 0
-        status_text = "Online" if result else "Offline"
-        current_time = time.strftime("%H:%M:%S")
 
-        # CẬP NHẬT UI AN TOÀN: Đẩy việc cập nhật chữ về luồng chính của Tkinter
-        root.after(0, update_gui, status_text, current_time)
+# ─── Hàm giám sát từng host (chạy trong thread) ──────────────────────────────
 
-        # Lưu dữ liệu để vẽ đồ thị
-        times.append(current_time)
-        status_values.append(status)
+def monitor_host(host: str, ports: list, interval: int, timeout: int):
+    """
+    Hàm chạy trong thread riêng, liên tục giám sát một host.
 
-        # Cắt bớt mảng nếu vượt quá giới hạn
-        if len(times) > MAX_DATA_POINTS:
-            times = times[-MAX_DATA_POINTS:]
-            status_values = status_values[-MAX_DATA_POINTS:]
+    Args:
+        host: Địa chỉ IP hoặc hostname
+        ports: Danh sách port cần check
+        interval: Khoảng thời gian giữa các lần check (giây)
+        timeout: Thời gian chờ (giây)
+    """
+    global logger, ping_results_history, port_results_history
 
-        # Ghi log dự phòng ra file CSV
-        with open("log.csv", "a", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow([ip, status_text, current_time])
+    logger.info(f"[THREAD START] Bắt đầu giám sát host: {host}")
 
-        # Gửi dữ liệu JSON lên Cloud Azure
+    while not stop_event.is_set():
+        # Ping host
+        ping_result = ping_host(host, timeout=timeout)
+
+        with results_lock:
+            ping_results_history.append(ping_result)
+            downtime_tracker.update_host(ping_result)
+
+        status_icon = "✅" if ping_result["status"] == "UP" else "❌"
+        latency_str = f"{ping_result['latency_ms']}ms" if ping_result['latency_ms'] else "N/A"
+
+        logger.info(
+            f"{status_icon} PING | {host:<20} | {ping_result['status']:<6} | "
+            f"Latency: {latency_str}"
+        )
+
+        # Check từng port
+        for port in ports:
+            if stop_event.is_set():
+                break
+
+            port_result = check_port(host, port, timeout=timeout)
+
+            with results_lock:
+                port_results_history.append(port_result)
+                downtime_tracker.update_port(port_result)
+
+            port_icon = "🟢" if port_result["status"] == "OPEN" else "🔴"
+            port_latency = f"{port_result['latency_ms']}ms" if port_result['latency_ms'] else "N/A"
+
+            logger.info(
+                f"{port_icon} PORT | {host:<20} | Port {port:<5} "
+                f"({port_result['service']:<12}) | {port_result['status']:<10} | "
+                f"Latency: {port_latency}"
+            )
+
+        # Chờ đến chu kỳ tiếp theo
+        if interval == 0:
+            break
+        stop_event.wait(timeout=interval)
+
+    logger.info(f"[THREAD STOP] Dừng giám sát host: {host}")
+
+
+# ─── Tạo báo cáo CSV ──────────────────────────────────────────────────────────
+
+def generate_reports():
+    """Xuất tất cả báo cáo ra file CSV."""
+    global logger, ping_results_history, port_results_history
+
+    logger.info("=" * 60)
+    logger.info("Đang xuất báo cáo CSV...")
+
+    # Báo cáo ping
+    if ping_results_history:
+        path = export_ping_report(ping_results_history)
+        logger.info(f"✅ Đã xuất báo cáo ping: {path}")
+
+    # Báo cáo port
+    if port_results_history:
+        path = export_port_report(port_results_history)
+        logger.info(f"✅ Đã xuất báo cáo port: {path}")
+
+    # Báo cáo downtime
+    if downtime_tracker.downtime_events:
+        path = export_downtime_report(downtime_tracker.downtime_events)
+        logger.info(f"✅ Đã xuất báo cáo downtime: {path}")
+
+    # Báo cáo tổng hợp
+    path = export_summary_report(
+        ping_results_history,
+        port_results_history,
+        downtime_tracker.downtime_events
+    )
+    logger.info(f"✅ Đã xuất báo cáo tổng hợp: {path}")
+    logger.info("=" * 60)
+
+    # In thống kê tóm tắt
+    summary = downtime_tracker.get_summary()
+    logger.info("📊 THỐNG KÊ DOWNTIME:")
+    logger.info(f"   Tổng sự kiện downtime: {summary['total_downtime_events']}")
+    logger.info(f"   Tổng thời gian down  : {summary['total_downtime_seconds']}s")
+    logger.info(f"   Host down events     : {summary['host_downtime_events']}")
+    logger.info(f"   Port down events     : {summary['port_downtime_events']}")
+
+
+# ─── Xử lý tín hiệu dừng (Ctrl+C) ────────────────────────────────────────────
+
+def signal_handler(sig, frame):
+    """Xử lý khi người dùng nhấn Ctrl+C."""
+    global logger
+    print()  # Xuống dòng sau ^C
+    logger.warning("Nhận tín hiệu dừng (Ctrl+C). Đang dừng chương trình...")
+    stop_event.set()
+
+
+# ─── Đọc danh sách host từ file ──────────────────────────────────────────────
+
+def load_hosts_from_file(filepath: str) -> list:
+    """
+    Đọc danh sách host từ file text (mỗi dòng một host).
+
+    Args:
+        filepath: Đường dẫn tới file hosts
+
+    Returns:
+        Danh sách hostname/IP
+    """
+    hosts = []
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                # Bỏ qua dòng trống và comment (bắt đầu bằng #)
+                if line and not line.startswith("#"):
+                    hosts.append(line)
+    except FileNotFoundError:
+        print(f"[LỖI] Không tìm thấy file: {filepath}")
+        sys.exit(1)
+    return hosts
+
+
+# ─── Cấu hình argparse ────────────────────────────────────────────────────────
+
+def parse_arguments() -> argparse.Namespace:
+    """
+    Phân tích các tham số dòng lệnh với argparse.
+
+    Returns:
+        Namespace chứa tất cả tham số đã parse
+    """
+    parser = argparse.ArgumentParser(
+        prog="monitor.py",
+        description=(
+            "🌐 Python Network Monitoring Tool (mini-NMS)\n"
+            "Giám sát trạng thái mạng: ping host, kiểm tra TCP port,\n"
+            "ghi log downtime và xuất báo cáo CSV."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Ví dụ sử dụng:
+  python monitor.py --hosts 8.8.8.8 1.1.1.1
+  python monitor.py --hosts 192.168.1.1 --ports 80 443 22
+  python monitor.py --file hosts.txt --ports 80 443 --interval 10
+  python monitor.py --file hosts.txt --interval 5 --timeout 3 --log-level DEBUG
+  python monitor.py --hosts google.com --once
+        """
+    )
+
+    # Nhóm: Nguồn host
+    host_group = parser.add_mutually_exclusive_group(required=True)
+    host_group.add_argument(
+        "--hosts", "-H",
+        nargs="+",
+        metavar="HOST",
+        help="Danh sách host/IP cần giám sát (ví dụ: 8.8.8.8 google.com)"
+    )
+    host_group.add_argument(
+        "--file", "-f",
+        metavar="FILE",
+        help="File chứa danh sách host (mỗi dòng một host)"
+    )
+
+    # Cấu hình giám sát
+    parser.add_argument(
+        "--ports", "-p",
+        nargs="+",
+        type=int,
+        default=[80, 443],
+        metavar="PORT",
+        help="Danh sách TCP port cần check (mặc định: 80 443)"
+    )
+    parser.add_argument(
+        "--interval", "-i",
+        type=int,
+        default=30,
+        metavar="SECONDS",
+        help="Khoảng thời gian giữa mỗi lần ping/check (giây, mặc định: 30)"
+    )
+    parser.add_argument(
+        "--timeout", "-t",
+        type=int,
+        default=3,
+        metavar="SECONDS",
+        help="Thời gian chờ phản hồi tối đa (giây, mặc định: 3)"
+    )
+    parser.add_argument(
+        "--once",
+        action="store_true",
+        help="Chỉ chạy một lần rồi thoát (không lặp liên tục)"
+    )
+
+    # Cấu hình log
+    parser.add_argument(
+        "--log-level",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        default="INFO",
+        help="Mức độ log (mặc định: INFO)"
+    )
+
+    # Cấu hình report
+    parser.add_argument(
+        "--no-report",
+        action="store_true",
+        help="Không xuất báo cáo CSV khi kết thúc"
+    )
+
+    return parser.parse_args()
+
+
+# ─── Hàm chính ────────────────────────────────────────────────────────────────
+
+def main():
+    global logger
+
+    # Parse tham số dòng lệnh
+    args = parse_arguments()
+
+    # Khởi tạo logger
+    logger = setup_logger(args.log_level)
+
+    # ── Banner ──────────────────────────────────────────────────────────────
+    banner = """
+╔══════════════════════════════════════════════════════════╗
+║      🌐  Python Network Monitoring Tool (mini-NMS)       ║
+║         Giám sát mạng bằng Python | socket + threading   ║
+╚══════════════════════════════════════════════════════════╝"""
+    print(banner)
+
+    # Xác định danh sách host
+    if args.hosts:
+        hosts = args.hosts
+    else:
+        hosts = load_hosts_from_file(args.file)
+
+    if not hosts:
+        logger.error("Không có host nào để giám sát!")
+        sys.exit(1)
+
+    # Validate port range
+    for port in args.ports:
+        if not (1 <= port <= 65535):
+            logger.error(f"Port không hợp lệ: {port}. Port phải từ 1-65535.")
+            sys.exit(1)
+
+    # ── Hiển thị cấu hình ───────────────────────────────────────────────────
+    logger.info("=" * 60)
+    logger.info(f"📋 CẤU HÌNH GIÁM SÁT:")
+    logger.info(f"   Hosts       : {', '.join(hosts)}")
+    logger.info(f"   Ports       : {', '.join(map(str, args.ports))}")
+    logger.info(f"   Interval    : {args.interval}s")
+    logger.info(f"   Timeout     : {args.timeout}s")
+    logger.info(f"   Log level   : {args.log_level}")
+    logger.info(f"   Mode        : {'Một lần' if args.once else 'Liên tục'}")
+    logger.info("=" * 60)
+
+    # Đăng ký handler Ctrl+C
+    signal.signal(signal.SIGINT, signal_handler)
+
+    # ── Chế độ chỉ chạy một lần ─────────────────────────────────────────────
+    if args.once:
+        logger.info("🔍 Đang thực hiện kiểm tra một lần...")
+
+        threads = []
+        for host in hosts:
+            t = threading.Thread(
+                target=monitor_host,
+                args=(host, args.ports, 0, args.timeout),
+                name=f"Monitor-{host}",
+                daemon=True
+            )
+            threads.append(t)
+            t.start()
+
+        # Đợi tất cả thread hoàn thành
+        for t in threads:
+            t.join(timeout=args.timeout * len(args.ports) + 5)
+
+        stop_event.set()
+
+    # ── Chế độ giám sát liên tục ─────────────────────────────────────────────
+    else:
+        logger.info("🚀 Bắt đầu giám sát liên tục (Ctrl+C để dừng)...")
+        logger.info("📢 Báo cáo sẽ được lưu tự động mỗi 5 phút.")
+
+        threads = []
+        for host in hosts:
+            t = threading.Thread(
+                target=monitor_host,
+                args=(host, args.ports, args.interval, args.timeout),
+                name=f"Monitor-{host}",
+                daemon=True
+            )
+            threads.append(t)
+            t.start()
+            logger.debug(f"Thread created: {t.name}")
+
+        logger.info(f"✅ Đã khởi động {len(threads)} thread giám sát")
+
+        # Chế độ lưu báo cáo định kỳ (300 giây = 5 phút)
+        REPORT_INTERVAL = 300
+        last_report_time = time.time()
+
+        # Chờ tín hiệu dừng
         try:
-            API_TOKEN = "Anna-Secret-Token-2026"
-            headers = {"Authorization": f"Bearer {API_TOKEN}"}
-            data = {"ip": ip, "status": status_text, "time": current_time}
-            requests.post(AZURE_API_URL, json=data, headers=headers, timeout=2)
-        except Exception as e:
-            print(f"Lỗi kết nối Server Azure: {e}")
+            while not stop_event.is_set():
+                # Kiểm tra xem đã đến lúc lưu báo cáo chưa
+                current_time = time.time()
+                if current_time - last_report_time >= REPORT_INTERVAL:
+                    generate_reports()
+                    last_report_time = current_time
+                
+                time.sleep(1)
+        except KeyboardInterrupt:
+            stop_event.set()
 
-        # Tạm nghỉ 2 giây rồi ping tiếp
-        time.sleep(2)
+        # Đợi tất cả thread kết thúc
+        for t in threads:
+            t.join(timeout=5)
 
-def update_gui(status_text, current_time):
-    label_status.config(text=f"Status: {status_text}", fg="green" if status_text == "Online" else "red")
-    label_time.config(text=f"Time: {current_time}")
+    # ── Xuất báo cáo ────────────────────────────────────────────────────────
+    if not args.no_report:
+        generate_reports()
+    else:
+        logger.info("Bỏ qua xuất báo cáo (--no-report).")
 
-# ===== START/STOP =====
-def start():
-    global running
-    if not running:  
-        running = True
-        btn_start.config(state=tk.DISABLED)  # Khóa mờ nút Start lại để chống bấm đúp
-        threading.Thread(target=check_network, daemon=True).start()
+    logger.info("👋 Chương trình kết thúc.")
 
-def stop():
-    global running
-    running = False
-    btn_start.config(state=tk.NORMAL)  # Mở khóa lại nút Start
-    label_status.config(text="Status: Stopped", fg="black")
 
-# ===== REAL-TIME GRAPH =====
-def show_graph():
-    global times, status_values, ani
-    
-    if not times:
-        messagebox.showinfo("Thông báo", "Chưa có dữ liệu! Hãy nhấn Start và đợi vài giây.")
-        return
-
-    # Khởi tạo cửa sổ biểu đồ
-    fig, ax = plt.subplots(figsize=(8, 5))
-    plt.subplots_adjust(bottom=0.25) # Nới rộng lề dưới để không bị cắt chữ
-
-    def animate(i):
-        if not times: return
-        ax.clear() # Xóa nét vẽ cũ
-        
-        # Vẽ nét mới
-        ax.plot(times, status_values, marker='o', linestyle='-', color='#1f77b4', linewidth=2)
-        
-        # Cấu hình thẩm mỹ cho biểu đồ
-        ax.set_title("Biểu đồ giám sát mạng (Real-time)", fontsize=13, fontweight='bold')
-        ax.set_ylim(-0.5, 1.5)
-        ax.set_yticks([0, 1])
-        ax.set_yticklabels(['Offline (0)', 'Online (1)'])
-        ax.set_ylabel("Trạng thái")
-        ax.grid(True, linestyle='--', alpha=0.6)
-
-        # Tính toán để trục X không bị dính chữ vào nhau
-        step = max(1, len(times) // 8)
-        ax.set_xticks(range(0, len(times), step))
-        ax.set_xticklabels(times[::step], rotation=45, ha='right')
-
-    # Chạy Animation cập nhật tự động mỗi 1000ms (1 giây)
-    ani = FuncAnimation(fig, animate, interval=1000, cache_frame_data=False)
-    plt.show()
-
-# ===== SCAN LAN =====
-def scan_lan_thread():
-    base_ip = entry_ip.get().rsplit('.', 1)[0]
-    
-    # Dọn dẹp Text box và khóa nút Scan an toàn
-    root.after(0, lambda: result_text.delete(1.0, tk.END))
-    root.after(0, lambda: btn_scan.config(state=tk.DISABLED))
-    root.after(0, lambda: result_text.insert(tk.END, f"Đang quét IP từ {base_ip}.1 đến .10...\n"))
-
-    for i in range(1, 11):
-        ip = f"{base_ip}.{i}"
-        result = ping(ip, timeout=0.5)
-        if result:
-            root.after(0, lambda current_ip=ip: result_text.insert(tk.END, f"[+] {current_ip} is ONLINE\n"))
-            
-    root.after(0, lambda: result_text.insert(tk.END, "Hoàn tất quét mạng!\n"))
-    root.after(0, lambda: btn_scan.config(state=tk.NORMAL))
-
-def scan_lan():
-    threading.Thread(target=scan_lan_thread, daemon=True).start()
-
-# ===== GUI SETUP =====
-root = tk.Tk()
-root.title("Network Monitor PRO")
-root.geometry("350x510")
-
-tk.Label(root, text="Enter Target IP:").pack(pady=(10,0))
-entry_ip = tk.Entry(root, justify="center", font=("Arial", 11))
-entry_ip.pack(pady=5)
-entry_ip.insert(0, "8.8.8.8")
-
-label_status = tk.Label(root, text="Status: Waiting...", font=("Arial", 12, "bold"))
-label_status.pack(pady=5)
-
-label_time = tk.Label(root, text="Time: --:--:--")
-label_time.pack()
-
-# Khung chứa nút Start và Stop nằm ngang
-frame_btns = tk.Frame(root)
-frame_btns.pack(pady=10)
-btn_start = tk.Button(frame_btns, text="Start", command=start, width=10, bg="#90EE90", font=("Arial", 10, "bold"))
-btn_start.grid(row=0, column=0, padx=5)
-btn_stop = tk.Button(frame_btns, text="Stop", command=stop, width=10, bg="#FFB6C1", font=("Arial", 10, "bold"))
-btn_stop.grid(row=0, column=1, padx=5)
-
-tk.Button(root, text="Show Live Graph", command=show_graph, width=25, bg="#ADD8E6").pack(pady=5)
-btn_scan = tk.Button(root, text="Scan Quick LAN (1-10)", command=scan_lan, width=25, bg="#FFFACD")
-btn_scan.pack(pady=5)
-
-result_text = tk.Text(root, height=10, width=35)
-result_text.pack(pady=10)
-
-root.mainloop()
+if __name__ == "__main__":
+    main()

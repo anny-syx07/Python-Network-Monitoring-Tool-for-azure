@@ -1,0 +1,16 @@
+# hosts.txt - Danh sách host cần giám sát
+# Mỗi dòng là một địa chỉ IP hoặc hostname
+# Dòng bắt đầu bằng # là comment, sẽ bị bỏ qua
+
+# ── Public DNS Servers ─────────────────────────────────────────
+8.8.8.8
+8.8.4.4
+1.1.1.1
+
+# ── Google Services ────────────────────────────────────────────
+google.com
+youtube.com
+
+# ── Ví dụ host nội bộ (thay đổi theo mạng của bạn) ────────────
+# 192.168.1.1
+# 192.168.1.100
